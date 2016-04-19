@@ -23,5 +23,8 @@
     <ClInclude Include="kissdb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="inttypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

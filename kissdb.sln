@@ -11,6 +11,7 @@ Global
 		Prerelease|Win32 = Prerelease|Win32
 		Release|Win32 = Release|Win32
 		Simulation|Win32 = Simulation|Win32
+		Test|Win32 = Test|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -21,6 +22,8 @@ Global
 		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Release|Win32.Build.0 = Release|Win32
 		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Simulation|Win32.ActiveCfg = Release|Win32
 		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Simulation|Win32.Build.0 = Release|Win32
+		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Test|Win32.ActiveCfg = Test|Win32
+		{6D8E92F7-63C8-48FF-9D16-7A28B4358CB0}.Test|Win32.Build.0 = Test|Win32
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Debug|Win32.ActiveCfg = Debug|Win32
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Debug|Win32.Build.0 = Debug|Win32
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Prerelease|Win32.ActiveCfg = Prerelease|Win32
@@ -29,6 +32,8 @@ Global
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Release|Win32.Build.0 = Release|Win32
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Simulation|Win32.ActiveCfg = Simulation|Win32
 		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Simulation|Win32.Build.0 = Simulation|Win32
+		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Test|Win32.ActiveCfg = Release|Win32
+		{FD53C656-DF6D-4D74-9140-F18088D03FDF}.Test|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -343,7 +343,7 @@ int KISSDB_Iterator_next(KISSDB_Iterator *dbi,void *kbuf,void *vbuf)
 
 #ifdef KISSDB_TEST
 
-#include <inttypes.h>
+#include "inttypes.h"
 
 int main(int argc,char **argv)
 {
