@@ -21,6 +21,6 @@ Debug/
 *.opensdf
 *.v11.suo
 *.vcxproj.user
+*.sdf
 Test/
 Release/
-*.sdf
