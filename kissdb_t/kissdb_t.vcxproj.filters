@@ -18,7 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="enclave_t.c">
+    <ClCompile Include="kissdb_t.c">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="enclave.c">
@@ -26,25 +26,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="enclave_t.h">
+    <ClInclude Include="kissdb_t.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="enclave_private.pem">
+    <None Include="kissdb_t_private.pem">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="enclave.config.xml">
+    <Xml Include="kissdb_t.config.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="enclave.edl">
+    <CustomBuild Include="kissdb.edl">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>

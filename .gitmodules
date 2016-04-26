@@ -1,0 +1,3 @@
+[submodule "sgx-lib"]
+	path = sgx-lib
+	url = git@github.com:/ftes/sgx-lib

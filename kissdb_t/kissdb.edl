@@ -1,7 +1,8 @@
 enclave {
+	from "../sgx-lib/sgx_lib_t/sgx_lib.edl" import *;
+
     trusted {
-        /* define ECALLs here. */
-    
+        public void dummy_root();
     };
 
     untrusted {

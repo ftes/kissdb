@@ -24,3 +24,10 @@ Debug/
 *.sdf
 Test/
 Release/
+Simulation/
+
+# SGX
+kissdb_u/kissdb_u.c
+kissdb_u/kissdb_u.h
+kissdb_t/kissdb_t.c
+kissdb_t/kissdb_t.h
