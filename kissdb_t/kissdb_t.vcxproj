@@ -121,7 +121,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <Optimization>Disabled</Optimization>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)include;$(SGXSDKInstallPath)include\tlibc;$(SGXSDKInstallPath)include\stlport;..\sgx-lib\include;..\sgx-lib\sgx_lib_t\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)include;$(SGXSDKInstallPath)include\tlibc;$(SGXSDKInstallPath)include\stlport;..\sgx-lib\include;..\sgx-lib\sgx_lib_t\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_WINDLL;SGX_ENCLAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -220,8 +220,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\sgx-lib\sgx_lib_u\sgx_lib_u.vcxproj">
-      <Project>{9367a9a8-6153-4053-8e72-b9cedbadea2d}</Project>
+    <ProjectReference Include="..\sgx-lib\sgx_lib_t\sgx_lib_t.vcxproj">
+      <Project>{1426ff60-1bc6-4f41-80d4-3c15be167046}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
