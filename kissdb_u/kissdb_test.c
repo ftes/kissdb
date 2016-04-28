@@ -6,7 +6,7 @@
 #include <inttypes.h>
 
 
-void kissdb_test()
+int kissdb_test()
 {
 	uint64_t i,j;
 	uint64_t v[8];
@@ -106,4 +106,6 @@ void kissdb_test()
 	KISSDB_close(&db);
 
 	printf("All tests OK!\n");
+
+  return 0;
 }
