@@ -165,6 +165,8 @@ extern void KISSDB_Iterator_init(KISSDB *db,KISSDB_Iterator *dbi);
  */
 extern int KISSDB_Iterator_next(KISSDB_Iterator *dbi,void *kbuf,void *vbuf);
 
+void kissdb_test();
+
 #ifdef __cplusplus
 }
 #endif

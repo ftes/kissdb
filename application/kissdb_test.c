@@ -1,9 +1,12 @@
+#include "kissdb.h"
+
 #include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <inttypes.h>
 
-#include "inttypes.h"
-#include "..\kissdb_u\kissdb.h"
 
-int main(int argc,char **argv)
+void kissdb_test()
 {
 	uint64_t i,j;
 	uint64_t v[8];
@@ -103,6 +106,4 @@ int main(int argc,char **argv)
 	KISSDB_close(&db);
 
 	printf("All tests OK!\n");
-
-	return 0;
 }

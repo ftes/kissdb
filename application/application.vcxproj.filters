@@ -14,27 +14,33 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Generated Files">
-      <UniqueIdentifier>{ceb059d2-5e95-4714-ae4a-456001822e03}</UniqueIdentifier>
+      <UniqueIdentifier>{23b50c3e-801a-4ddb-a483-9ff479a59ee1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="kissdb.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissdb_u.c">
+    <ClInclude Include="enclave_u.h">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
     <ClInclude Include="kissdb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kissdb_u.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\kissdb_t\kissdb.edl">
+    <ClCompile Include="enclave_u.c">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissdb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissdb_u_enclave.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissdb_test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\enclave\enclave.edl">
       <Filter>Source Files</Filter>
     </CustomBuild>
   </ItemGroup>
