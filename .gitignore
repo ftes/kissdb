@@ -15,3 +15,5 @@ kissdb_t/kissdb_t.h
 kissdb_u/kissdb_u.c
 kissdb_u/kissdb_u.h
 
+# Kissdb
+test.db
