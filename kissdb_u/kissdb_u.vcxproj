@@ -155,11 +155,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="enclave_u.h" />
+    <ClInclude Include="kissdb_u.h" />
     <ClInclude Include="kissdb.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="enclave_u.c">
+    <ClCompile Include="kissdb_u.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -174,17 +174,17 @@
     <ClCompile Include="kissdb_u_enclave.c" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\enclave\enclave.edl">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\enclave\enclave.edl" --search-path ".\..\enclave%3b$(SGXSDKInstallPath)\include"</Command>
+    <CustomBuild Include="..\kissdb_t\kissdb.edl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\kissdb_t\kissdb.edl" --search-path ".\..\$(SGXSDKInstallPath)\include"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Creating untrusted proxy/bridge routines</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\enclave\enclave.edl" --search-path ".\..\enclave%3b$(SGXSDKInstallPath)\include"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\kissdb_t\kissdb.edl" --search-path ".\..\$(SGXSDKInstallPath)\include"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Creating untrusted proxy/bridge routines</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\enclave\enclave.edl" --search-path ".\..\enclave%3b$(SGXSDKInstallPath)\include"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\kissdb_t\kissdb.edl" --search-path ".\..\$(SGXSDKInstallPath)\include"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">Creating untrusted proxy/bridge routines</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Simulation|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\enclave\enclave.edl" --search-path ".\..\enclave%3b$(SGXSDKInstallPath)\include"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">"$(SGXSDKInstallPath)\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\kissdb_t\kissdb.edl" --search-path ".\..\$(SGXSDKInstallPath)\include"</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">Creating untrusted proxy/bridge routines</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">$(ProjectDir)%(Filename)_u.h;$(ProjectDir)%(Filename)_u.c;%(Outputs)</Outputs>
     </CustomBuild>

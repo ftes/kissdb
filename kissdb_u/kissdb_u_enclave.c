@@ -3,11 +3,11 @@
 #include <direct.h>
 
 #include "sgx_lib_u_util.h"
-#include "enclave_u.h"
+#include "kissdb_u.h"
 
 #include "kissdb.h"
 
-#define ENCLAVE_FILE _T("enclave.signed.dll")
+#define ENCLAVE_FILE _T("kissdb_t.signed.dll")
 
 void test_enclave() {
   sgx_enclave_id_t eid;

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "application", "application\application.vcxproj", "{F40AA67A-C6F0-4A39-AAD3-AE4D71CC56A9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kissdb_u", "kissdb_u\kissdb_u.vcxproj", "{F40AA67A-C6F0-4A39-AAD3-AE4D71CC56A9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enclave", "enclave\enclave.vcxproj", "{4507EA5A-03CC-4AF6-AD49-88C8993E3B42}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kissdb_t", "kissdb_t\kissdb_t.vcxproj", "{4507EA5A-03CC-4AF6-AD49-88C8993E3B42}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sgx_lib_t", "sgx-lib\sgx_lib_t\sgx_lib_t.vcxproj", "{1426FF60-1BC6-4F41-80D4-3C15BE167046}"
 EndProject
