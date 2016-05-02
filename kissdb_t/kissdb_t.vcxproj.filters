@@ -24,6 +24,9 @@
     <ClCompile Include="kissdb_t.c">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="kissdb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kissdb_t.h">

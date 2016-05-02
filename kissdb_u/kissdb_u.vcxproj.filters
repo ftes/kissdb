@@ -21,12 +21,6 @@
     <ClInclude Include="kissdb_u.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="kissdb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kissdb_test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\kissdb_enclave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -34,9 +28,6 @@
   <ItemGroup>
     <ClCompile Include="kissdb_u.c">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kissdb.c">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="kissdb_u_enclave.c">
       <Filter>Source Files</Filter>

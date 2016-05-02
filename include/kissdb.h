@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "sgx_lib_stdio.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

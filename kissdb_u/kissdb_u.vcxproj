@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>_EXPORT;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;..\sgx-lib\include;..\sgx-lib\sgx_lib_u\include;..\include;.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SGXSDKInstallPath)\include;..\sgx-lib\include;..\sgx-lib\sgx_lib_u\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
@@ -157,9 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\kissdb_enclave.h" />
-    <ClInclude Include="kissdb_test.h" />
     <ClInclude Include="kissdb_u.h" />
-    <ClInclude Include="kissdb.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kissdb_u.c">
@@ -172,7 +170,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Prerelease|Win32'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="kissdb.c" />
     <ClCompile Include="kissdb_test.c" />
     <ClCompile Include="kissdb_u_enclave.c" />
     <ClCompile Include="main.c" />

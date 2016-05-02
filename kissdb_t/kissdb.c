@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "sgx_lib_t_stdio.h"
+
 #ifdef _WIN32
 #define fseeko _fseeki64
 #define ftello _ftelli64
