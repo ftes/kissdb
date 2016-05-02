@@ -1,10 +1,11 @@
-#include "kissdb.h"
-
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <inttypes.h>
 
+#include "kissdb.h"
+
+#include "kissdb_test.h"
 
 int kissdb_test()
 {

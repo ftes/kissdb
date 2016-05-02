@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sgx_lib_t", "sgx-lib\sgx_li
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sgx_lib_u", "sgx-lib\sgx_lib_u\sgx_lib_u.vcxproj", "{9367A9A8-6153-4053-8E72-B9CEDBADEA2D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test-client", "test-client\test-client.vcxproj", "{EEACC51C-20CF-471E-9AFF-F05E916C8108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +51,14 @@ Global
 		{9367A9A8-6153-4053-8E72-B9CEDBADEA2D}.Release|Win32.Build.0 = Release|Win32
 		{9367A9A8-6153-4053-8E72-B9CEDBADEA2D}.Simulation|Win32.ActiveCfg = Simulation|Win32
 		{9367A9A8-6153-4053-8E72-B9CEDBADEA2D}.Simulation|Win32.Build.0 = Simulation|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Debug|Win32.Build.0 = Debug|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Prerelease|Win32.ActiveCfg = Release|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Prerelease|Win32.Build.0 = Release|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Release|Win32.ActiveCfg = Release|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Release|Win32.Build.0 = Release|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Simulation|Win32.ActiveCfg = Simulation|Win32
+		{EEACC51C-20CF-471E-9AFF-F05E916C8108}.Simulation|Win32.Build.0 = Simulation|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
