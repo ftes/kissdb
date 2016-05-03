@@ -187,9 +187,10 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="enclave.c" />
+    <ClCompile Include="manual_encryption.c" />
     <ClCompile Include="kissdb.c" />
     <ClCompile Include="kissdb_t.c" />
+    <ClCompile Include="kissdb_t_wrapper.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kissdb_t.h" />

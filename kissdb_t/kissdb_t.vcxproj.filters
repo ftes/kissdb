@@ -18,13 +18,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="enclave.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="kissdb_t.c">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="kissdb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kissdb_t_wrapper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manual_encryption.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
