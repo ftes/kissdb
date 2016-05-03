@@ -47,6 +47,9 @@ void KISSDB_Iterator_init(KISSDB *db,KISSDB_Iterator *dbi) {
 
 int KISSDB_Iterator_next(KISSDB_Iterator *dbi,void *kbuf,void *vbuf) {
   int retval;
-  KISSDB_Iterator_next_ecall(dbi->db->eid, &retval, dbi->h_no, dbi->h_idx, kbuf, vbuf, dbi->db->key_size, dbi->db->value_size);
+  KISSDB *db = dbi->db;
+  dbi->db = NULL; //don't pass DB into enclave (different struct definitions)
+  KISSDB_Iterator_next_ecall(db->eid, &retval, dbi, kbuf, vbuf, db->key_size, db->value_size);
+  dbi->db = db;
   return retval;
 }

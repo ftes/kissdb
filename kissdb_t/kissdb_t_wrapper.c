@@ -22,10 +22,10 @@ int KISSDB_put_ecall(const void* key, const void* value, unsigned long int key_s
   return KISSDB_put(&db, key, value);
 }
 
-int KISSDB_Iterator_next_ecall(unsigned long int hashtable_number, unsigned long int hashtable_index, void* kbuf, void* vbuf, unsigned long int key_size, unsigned long int value_size) {
-  KISSDB_Iterator iter;
-  iter.db = &db;
-  iter.h_no = hashtable_number;
-  iter.h_idx = hashtable_index;
-  return KISSDB_Iterator_next(&iter, kbuf, vbuf);
+int KISSDB_Iterator_next_ecall(KISSDB_Iterator *dbi, void* kbuf, void* vbuf, unsigned long int key_size, unsigned long int value_size) {
+  int retval;
+  dbi->db = &db;
+  retval = KISSDB_Iterator_next(dbi, kbuf, vbuf);
+  dbi->db = NULL;
+  return retval;
 }
