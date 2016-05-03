@@ -15,6 +15,10 @@ The database executes entirely inside an SGX enclave. Data is not written into a
 - non-sensitive data (header, hash tables) are stored in the `.db` file in the clear
 
 
+# Architecture
+<img alt="Architecture" src="https://lh3.googleusercontent.com/QGM6cn-fhWcvfSaecv-8e_oHiSQrh4grmdrMZamRMNK6KMASUFkZCEiLX9WXFZNhZpvxusL3mhe0TA=w925-h991-no" width="500px"/>
+
+
 # ToDos
 - djb2 is not a crypto hash function, thus the hash table leaks information about keys
   - use crypto hash function (no informaion about keys leaked, but still problematic if small or non-uniformly distributed key space)
@@ -132,10 +136,14 @@ Changes:
 
 
 # Unencrypted vs. Encrypted `.db.` files
-Simply set `SGX_INSECURE_IO_OPERATIONS` macro in `kissdb_t` project to observe unencrypted `.db.` file
+
+## File structure overview
+<img alt="File Structure" src="https://lh3.googleusercontent.com/1rly1xCvtc9j2PbHEHMwQacwXNDDOZcSWR76vNomv4Cyk0ztj9ycfHJhdMXbVRjWlB9BK2BsQdqpnS49PsBvI8YX5E6jBTcqvIkaZIVGx-xcqBT58HoowKtpB5pyR6GCvtdifgJm9RRIa0ua2qzXB1xpCwxXbxtYDfwMeeYKeEGiAB7QAjjYffdE8bmozjytmus9GdD2hqAmjcuIN7cJK2m5wZ9XrGaWZQGcuzh_befNa6Jk6eYNbaZEE8bXhZajKGPRjSdAloxfG1RL9BIesPJOA9xQEWSSxSOraFNeCUlzfgqsvu-PE9bAjES4kr9hLHHX-L5B50R-bCSCQugIykXXTfPtJvtRNdOUueG4c01fAh2oKdoBgHFR0oM3TChZX3w6O5NkeWhuwMmHbf1pzs4cjijcCxmuTjAJrs0gSi9lgLNNiJM0BF-B6ytnKnRzuNtFyYlAkSDkar0x3HBe_ABub2sDJHIJo1ou9yiaxOGAOVM4q7D1BpQvT1EUqvh4d25Op96V7K1TwPoFjDW94TTC_ZUNxL3HmCbkgnRNzNnnm9Ako0puKhLBsMTfeDqRsT2jDA=w1051-h993-no" width="500px" />
 
 ## Unencrypted (800kB)
 Remarks:
+
+- set `SGX_INSECURE_IO_OPERATIONS` macro in `kissdb_t` project to observe unencrypted `.db.` file
 - file encoding is *little endian*: least significant byte (1 byte = 2 hex digits) first, e.g. `00 04 00 .. 00` is `00 .. 00 04 00` in big endian, which is 1,024 decimal
 - expected offset of first data item in file: `header_size (28byte) + first_hash_table_page_size (8200byte)`
   - `= 8228 decimal = 0x2024 hex (24 20 little endian)`
