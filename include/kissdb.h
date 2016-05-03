@@ -8,10 +8,18 @@
 #ifndef ___KISSDB_H
 #define ___KISSDB_H
 
+#ifdef _EXPORT
+#define DLLEXPORT __declspec( dllexport )
+#else
+#define DLLEXPORT __declspec( dllimport )
+#endif
+
 #include <stdio.h>
 #include <stdint.h>
 
-#include "sgx_lib_stdio.h"
+#ifdef SGX_ENCLAVE
+#include "sgx_lib_stdio.h" // includes FILE in the enclave
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,6 +34,8 @@ extern "C" {
  */
 #define KISSDB_VERSION 2
 
+unsigned long KISSDB_HEADER_SIZE;
+
 /**
  * KISSDB database state
  *
@@ -33,14 +43,21 @@ extern "C" {
  * value_size, but should never be changed.
  */
 typedef struct {
-	unsigned long hash_table_size;
 	unsigned long key_size;
 	unsigned long value_size;
+
+#ifdef SGX_ENCLAVE
+  // hash tables live inside enclave only
+	unsigned long hash_table_size;
 	unsigned long hash_table_size_bytes;
 	unsigned long num_hash_tables;
 	uint64_t *hash_tables;
 	FILE *f;
-} KISSDB;
+#else
+  // identifies the enclave associated with this KISSDB instance in the untrusted application
+  uint64_t eid;
+#endif
+} DLLEXPORT KISSDB;
 
 /**
  * I/O error or file not found
@@ -99,7 +116,7 @@ typedef struct {
  * @param value_size Size of values in bytes
  * @return 0 on success, nonzero on error
  */
-extern int KISSDB_open(
+extern DLLEXPORT int KISSDB_open(
 	KISSDB *db,
 	const char *path,
 	int mode,
@@ -112,7 +129,7 @@ extern int KISSDB_open(
  *
  * @param db Database struct
  */
-extern void KISSDB_close(KISSDB *db);
+extern DLLEXPORT void KISSDB_close(KISSDB *db);
 
 /**
  * Get an entry
@@ -122,7 +139,7 @@ extern void KISSDB_close(KISSDB *db);
  * @param vbuf Value buffer (value_size bytes capacity)
  * @return -1 on I/O error, 0 on success, 1 on not found
  */
-extern int KISSDB_get(KISSDB *db,const void *key,void *vbuf);
+extern DLLEXPORT int KISSDB_get(KISSDB *db,const void *key,void *vbuf);
 
 /**
  * Put an entry (overwriting it if it already exists)
@@ -135,7 +152,7 @@ extern int KISSDB_get(KISSDB *db,const void *key,void *vbuf);
  * @param value Value (value_size bytes)
  * @return -1 on I/O error, 0 on success
  */
-extern int KISSDB_put(KISSDB *db,const void *key,const void *value);
+extern DLLEXPORT int KISSDB_put(KISSDB *db,const void *key,const void *value);
 
 /**
  * Cursor used for iterating over all entries in database
@@ -144,7 +161,7 @@ typedef struct {
 	KISSDB *db;
 	unsigned long h_no;
 	unsigned long h_idx;
-} KISSDB_Iterator;
+} DLLEXPORT KISSDB_Iterator;
 
 /**
  * Initialize an iterator
@@ -152,7 +169,7 @@ typedef struct {
  * @param db Database struct
  * @param i Iterator to initialize
  */
-extern void KISSDB_Iterator_init(KISSDB *db,KISSDB_Iterator *dbi);
+extern DLLEXPORT void KISSDB_Iterator_init(KISSDB *db,KISSDB_Iterator *dbi);
 
 /**
  * Get the next entry
@@ -165,7 +182,7 @@ extern void KISSDB_Iterator_init(KISSDB *db,KISSDB_Iterator *dbi);
  * @param vbuf Buffer to fill with next value (value_size bytes)
  * @return 0 if there are no more entries, negative on error, positive if an kbuf/vbuf have been filled
  */
-extern int KISSDB_Iterator_next(KISSDB_Iterator *dbi,void *kbuf,void *vbuf);
+extern DLLEXPORT int KISSDB_Iterator_next(KISSDB_Iterator *dbi,void *kbuf,void *vbuf);
 
 #ifdef __cplusplus
 }

@@ -1,3 +1,0 @@
-LIBRARY   kissdb_u
-EXPORTS
-   test_enclave   @1
