@@ -7,7 +7,6 @@
 KISSDB db;
 
 int KISSDB_open_ecall(const char* path, int mode, unsigned long int hash_table_size, unsigned long int key_size, unsigned long int value_size) {
-  KISSDB_HEADER_SIZE = get_sealed_data_size((sizeof(uint64_t) * 3) + 4);
   return KISSDB_open(&db, path, mode, hash_table_size, key_size, value_size);
 }
 

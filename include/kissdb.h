@@ -34,8 +34,6 @@ extern "C" {
  */
 #define KISSDB_VERSION 2
 
-unsigned long KISSDB_HEADER_SIZE;
-
 /**
  * KISSDB database state
  *

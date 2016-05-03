@@ -12,6 +12,7 @@ The database executes entirely inside an SGX enclave. Data is not written into a
 - `KISSDB_close` frees the memory and destroys the enclave
 - the hash tables of `KISSDB` instances remain in enclave memory, the untrusted application only has the `enclave id`
 - `KISSDB_Iterator` instances live in untrusted memory
+- non-sensitive data (header, hash tables) are stored in the `.db` file in the clear
 
 
 # ToDo
