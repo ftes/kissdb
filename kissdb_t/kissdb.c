@@ -20,7 +20,6 @@
 #include <stdint.h>
 
 #include "sgx_lib_t_stdio.h"
-#include "sgx_lib_t_util.h"
 
 #ifdef _WIN32
 #define fseeko _fseeki64
