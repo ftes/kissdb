@@ -1,9 +1,6 @@
-#include "sgx_lib_t_util.h"
-
 #include "sgx_lib_t_stdio.h"
 
 #include "kissdb.h"
-#include "kissdb_t.h"
 
 // database "singleton" that is operated on by this enclave
 KISSDB db;
