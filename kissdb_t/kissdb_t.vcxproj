@@ -122,7 +122,7 @@
       <Optimization>Disabled</Optimization>
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>$(SGXSDKInstallPath)include;$(SGXSDKInstallPath)include\tlibc;$(SGXSDKInstallPath)include\stlport;..\sgx-lib\include;..\sgx-lib\sgx_lib_t\include;..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SGX_ENCLAVE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SGX_ENCLAVE;SGX_SECURE_IO_OPERATIONS_KEY;_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
