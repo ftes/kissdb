@@ -142,7 +142,7 @@ Simply set `SGX_INSECURE_IO_OPERATIONS` macro in `kissdb_t` project to observe u
 ## File structure overview
 <img alt="File Structure" src="https://lh3.googleusercontent.com/trHyuMsTomsh2pQrs-3Qe2zUAVAZGVKimZHnaXmKOPnX9Z6ILwhE8HrcnRNYTYvi4M3jpKMBCtx3WA=w1021-h965-no" width="500px" />
 
-## Unencrypted (0.8MB)
+## Unencrypted (800kB)
 Remarks:
 - file encoding is *little endian*: least significant byte (1 byte = 2 hex digits) first, e.g. `00 04 00 .. 00` is `00 .. 00 04 00` in big endian, which is 1,024 decimal
 - expected offset of first data item in file: `header_size (28byte) + first_hash_table_page_size (8200byte)`
@@ -214,7 +214,7 @@ Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ...
 ```
 
-## Encrypted (1.3MB)
+## Encrypted (1MB)
 ```
 Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 
@@ -234,9 +234,10 @@ Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 00002000  00 00 00 00 64 94 00 00 00 00 00 00 DC 2B 00 00  ....d”......Ü+..
 00002010  00 00 00 00 3C 31 04 00 00 00 00 00 AC A6 00 00  ....<1......¬¦..
 // END first hash table page
-00002020  00 00 00 00 01 00 00 00 A1 7E C6 28 87 60 B4 6B  ........¡~Æ(‡`´k  // BEGIN first entry at 2024: number_of_blocks=1, ctr=¡~Æ(‡`´k, ...
-00002030  00 00 00 00 00 00 00 00 D6 23 58 79 62 27 04 41  ........Ö#Xyb'.A  // encrypted key is 36byte (0x24 hex) long, encrypted value starts at `0x2024 + 0x24 = 0x2048`
-00002040  00 00 00 00 00 00 00 00 04 00 00 00 DD 63 52 0B  ............ÝcR.
-00002050  23 7E 20 0F 00 00 00 00 00 00 00 00 C9 78 A1 8C  #~ .........Éx¡Œ
+00002020  00 00 00 00 7E 6E DF 1F 2C 34 F5 4E BD CD D4 66  ....~nß.,4õN½ÍÔf
+// BEGIN first entry at 2024: ctr_nonce=~nß.,4õN, data=½ÍÔf...
+00002030  D4 53 B7 C4 8A 74 FB 5A 18 67 71 65 1B 80 A9 AD  ÔS·ÄŠtûZ.gqe.€©.
+  // encrypted key (incl. ctr_nonce) is 16byte (0x10 hex) long, encrypted value starts at `0x2024 + 0x10 = 0x2034`
+00002040  35 AF 88 7B 11 A6 E0 C4 A5 58 3C 61 4C EF FF DE  5¯ˆ{.¦àÄ¥X<aLïÿÞ
 ...
 ```
