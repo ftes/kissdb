@@ -120,7 +120,8 @@ extern DLLEXPORT int KISSDB_open(
 	int mode,
 	unsigned long hash_table_size,
 	unsigned long key_size,
-	unsigned long value_size);
+	unsigned long value_size,
+  uint8_t encryption_key[128]);
 
 /**
  * Close database

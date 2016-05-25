@@ -27,9 +27,6 @@
     <ClCompile Include="kissdb_t_wrapper.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="manual_encryption.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kissdb_t.h">

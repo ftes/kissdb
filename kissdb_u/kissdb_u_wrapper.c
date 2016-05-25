@@ -6,14 +6,15 @@
 
 #define ENCLAVE_FILE _T("kissdb_t.signed.dll")
 
-int KISSDB_open(KISSDB *db,	const char *path,	int mode,	unsigned long hash_table_size, unsigned long key_size, unsigned long value_size) {
+int KISSDB_open(KISSDB *db,	const char *path,	int mode,	unsigned long hash_table_size, unsigned long key_size, unsigned long value_size,
+                uint8_t encryption_key[128]) {
   int retval;
   
 	db->key_size = key_size;
 	db->value_size = value_size;
 
   launch_enclave(ENCLAVE_FILE, &(db->eid));
-  KISSDB_open_ecall(db->eid, &retval, path, mode, hash_table_size, key_size, value_size);
+  KISSDB_open_ecall(db->eid, &retval, path, mode, hash_table_size, key_size, value_size, encryption_key);
 
   return retval;
 }

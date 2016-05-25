@@ -10,10 +10,11 @@ int main() {
 	KISSDB_Iterator dbi;
 	char got_all_values[10000];
 	int q;
+  uint8_t encryption_key[128] = {0};
 
 	printf("Opening new empty database test.db...\n");
 
-	if (KISSDB_open(&db,"test.db",KISSDB_OPEN_MODE_RWREPLACE,1024,8,sizeof(v))) {
+	if (KISSDB_open(&db,"test.db",KISSDB_OPEN_MODE_RWREPLACE,1024,8,sizeof(v), encryption_key)) {
 		printf("KISSDB_open failed\n");
 		return 1;
 	}
@@ -59,7 +60,7 @@ int main() {
 
 	KISSDB_close(&db);
 
-	if (KISSDB_open(&db,"test.db",KISSDB_OPEN_MODE_RDONLY,1024,8,sizeof(v))) {
+	if (KISSDB_open(&db,"test.db",KISSDB_OPEN_MODE_RDONLY,1024,8,sizeof(v), encryption_key)) {
 		printf("KISSDB_open failed\n");
 		return 1;
 	}

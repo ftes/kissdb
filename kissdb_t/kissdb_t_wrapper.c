@@ -1,13 +1,19 @@
 #include "sgx_lib_t_util.h"
 
+#include "sgx_lib_t_stdio.h"
+
 #include "kissdb.h"
 #include "kissdb_t.h"
 
 // database "singleton" that is operated on by this enclave
 KISSDB db;
 
-int KISSDB_open_ecall(const char* path, int mode, unsigned long int hash_table_size, unsigned long int key_size, unsigned long int value_size) {
-  return KISSDB_open(&db, path, mode, hash_table_size, key_size, value_size);
+int KISSDB_open_ecall(const char* path, int mode, unsigned long int hash_table_size, unsigned long int key_size, unsigned long int value_size,
+                      uint8_t *encryption_key) {
+  set_secure_io_key(encryption_key);
+
+  //TODO encryption_key is not used in KISSDB_open, should define different method signature for within enclave in new header file
+  return KISSDB_open(&db, path, mode, hash_table_size, key_size, value_size, encryption_key);
 }
 
 void KISSDB_close_ecall() {

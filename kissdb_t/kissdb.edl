@@ -3,7 +3,7 @@ enclave {
 
 	include "kissdb.h"
     trusted {
-		public int KISSDB_open_ecall([in, string, readonly] const char *path, int mode, unsigned long hash_table_size, unsigned long key_size, unsigned long value_size);
+		public int KISSDB_open_ecall([in, string, readonly] const char *path, int mode, unsigned long hash_table_size, unsigned long key_size, unsigned long value_size, [in, size=128] uint8_t *encryption_key);
 		public void KISSDB_close_ecall();
 		public int KISSDB_get_ecall([in, size=key_size] const void *key, [out, size=value_size] void *vbuf, unsigned long key_size, unsigned long value_size);
 		public int KISSDB_put_ecall([in, size=key_size] const void *key, [in, size=value_size] const void *value, unsigned long key_size, unsigned long value_size);
