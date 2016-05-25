@@ -135,14 +135,14 @@ Changes:
 ```
 
 
-# Unencrypted vs. Encrypted `.db.` files
+# Unencrypted vs. Sealed/Encrypted `.db.` files
 
 Simply set `SGX_INSECURE_IO_OPERATIONS` macro in `kissdb_t` project to observe unencrypted `.db.` files.
 
 ## File structure overview
 <img alt="File Structure" src="https://lh3.googleusercontent.com/trHyuMsTomsh2pQrs-3Qe2zUAVAZGVKimZHnaXmKOPnX9Z6ILwhE8HrcnRNYTYvi4M3jpKMBCtx3WA=w1021-h965-no" width="500px" />
 
-## Unencrypted (800kB)
+## Unencrypted (0.8MB)
 Remarks:
 - file encoding is *little endian*: least significant byte (1 byte = 2 hex digits) first, e.g. `00 04 00 .. 00` is `00 .. 00 04 00` in big endian, which is 1,024 decimal
 - expected offset of first data item in file: `header_size (28byte) + first_hash_table_page_size (8200byte)`
@@ -184,13 +184,14 @@ Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ...
 ```
 
-## Encrypted (12MB)
+## Sealed (12MB)
 ```
 Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 
 00000000  4B 64 42 02 00 04 00 00 00 00 00 00 08 00 00 00  KdB.............  // header: identical (unencrypted)
-00000010  00 00 00 00 40 00 00 00 00 00 00 00 0C 14 05 00  ....@...........
-00000020  00 00 00 00 5C 0A 07 00 00 00 00 00 4C 4C 00 00  ....\.......LL..  // BEGIN first hash table page (unencrypted)
+00000010  00 00 00 00 40 00 00 00 00 00 00 00 EC 8C 42 00  ....@.......ìŒB.
+00000020  00 00 00 00 FC 08 63 00 00 00 00 00 2C FB 02 00  ....ü.c.....,û..
+  // BEGIN first hash table page (unencrypted)
 00000030  00 00 00 00 EC D5 0E 00 00 00 00 00 2C 12 30 00  ....ìÕ......,.0.
 00000040  00 00 00 00 3C 8E 50 00 00 00 00 00 4C 0A 71 00  ....<ŽP.....L.q.
 ...
@@ -202,13 +203,40 @@ Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 00002000  00 00 00 00 E4 A2 04 00 00 00 00 00 8C 94 00 00  ....ä¢......Œ”..
 00002010  00 00 00 00 CC D0 21 00 00 00 00 00 7C 58 05 00  ....ÌÐ!.....|X..  // END first hash table page
 00002020  00 00 00 00 04 00 02 00 00 00 00 00 48 20 F3 37  ............H ó7  // BEGIN first entry at 2024: key_name=4, key_policy=2, isv_svn=0, ...
-00002030  6A E6 B2 F2 03 4D 3B 7A 4B 48 A7 78 CB FF FF FF  jæ²ò.M;zKH§xËÿÿÿ  // encrypted entry is 568byte (0x238 hex) long, next entry starts at `0x2024 + 0x238 = 0x225C`
+00002030  6A E6 B2 F2 03 4D 3B 7A 4B 48 A7 78 CB FF FF FF  jæ²ò.M;zKH§xËÿÿÿ  // encrypted key is 568byte (0x238 hex) long, encrypted value starts at `0x2024 + 0x238 = 0x225C`
 00002040  FF FF FF FF 00 00 00 00 00 00 00 00 66 2F A7 72  ÿÿÿÿ........f/§r
 00002050  54 63 FD 12 F2 5B 43 12 C0 60 F9 61 3E 45 9F 0F  Tcý.ò[C.À`ùa>EŸ.
 ...
 00002240  00 00 00 00 B3 AD A1 4C 81 86 64 90 31 09 CA A7  ....³.¡L.†d.1.Ê§
-00002250  B7 6C D4 7C 6E A0 D9 BA BB FF 46 B9 04 00 02 00  ·lÔ|n Ùº»ÿF¹....  // BEGIN second entry at 225C: same magic numbers (4, 2, ...)
+00002250  B7 6C D4 7C 6E A0 D9 BA BB FF 46 B9 04 00 02 00  ·lÔ|n Ùº»ÿF¹....  // BEGIN encrypted value at 225C: same magic numbers (4, 2, ...)
 00002260  00 00 00 00 48 20 F3 37 6A E6 B2 F2 03 4D 3B 7A  ....H ó7jæ²ò.M;z
 00002270  4B 48 A7 78 CB FF FF FF FF FF FF FF 00 00 00 00  KH§xËÿÿÿÿÿÿÿ....
+...
+```
+
+## Encrypted (1.3MB)
+```
+Offset(h) 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+
+00000000  4B 64 42 02 00 04 00 00 00 00 00 00 08 00 00 00  KdB.............  // header: identical (unencrypted)
+00000010  00 00 00 00 40 00 00 00 00 00 00 00 7C B6 07 00  ....@.......|¶..
+00000020  00 00 00 00 AC FB 0A 00 00 00 00 00 BC 69 00 00  ....¬û......¼i..
+  // BEGIN first hash table page (unencrypted)
+00000030  00 00 00 00 DC D4 01 00 00 00 00 00 3C DA 05 00  ....ÜÔ......<Ú..
+00000040  00 00 00 00 6C 1F 09 00 00 00 00 00 9C 64 0C 00  ....l.......œd..
+...
+00001030  00 00 00 00 8C 0D 0A 00 00 00 00 00 AC 88 00 00  ....Œ.......¬ˆ..
+00001040  00 00 00 00 24 20 00 00 00 00 00 00 14 CC 04 00  ....$ .......Ì..
+// hash table entry for first inserted item has not changed (offset remains the same): `24 20`
+00001050  00 00 00 00 4C 31 08 00 00 00 00 00 7C 76 0B 00  ....L1......|v..
+...
+00001FF0  00 00 00 00 8C 4D 06 00 00 00 00 00 BC 92 09 00  ....ŒM......¼’..
+00002000  00 00 00 00 64 94 00 00 00 00 00 00 DC 2B 00 00  ....d”......Ü+..
+00002010  00 00 00 00 3C 31 04 00 00 00 00 00 AC A6 00 00  ....<1......¬¦..
+// END first hash table page
+00002020  00 00 00 00 01 00 00 00 A1 7E C6 28 87 60 B4 6B  ........¡~Æ(‡`´k  // BEGIN first entry at 2024: number_of_blocks=1, ctr=¡~Æ(‡`´k, ...
+00002030  00 00 00 00 00 00 00 00 D6 23 58 79 62 27 04 41  ........Ö#Xyb'.A  // encrypted key is 36byte (0x24 hex) long, encrypted value starts at `0x2024 + 0x24 = 0x2048`
+00002040  00 00 00 00 00 00 00 00 04 00 00 00 DD 63 52 0B  ............ÝcR.
+00002050  23 7E 20 0F 00 00 00 00 00 00 00 00 C9 78 A1 8C  #~ .........Éx¡Œ
 ...
 ```
