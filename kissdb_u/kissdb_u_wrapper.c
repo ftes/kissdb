@@ -21,7 +21,7 @@ int KISSDB_open(KISSDB *db,	const char *path,	int mode,	unsigned long hash_table
 
 
 void KISSDB_close(KISSDB *db) {
-  // freeing memory and memestting as performed by this ecall is not really necessary, as we are destroying enclave anyway
+  // freeing memory and memsetting as performed by this ecall is not really necessary, as we are destroying enclave anyway
   KISSDB_close_ecall(db->eid);
 
   destroy_enclave(db->eid);
