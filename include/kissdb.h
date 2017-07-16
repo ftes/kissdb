@@ -45,15 +45,15 @@ typedef struct {
 	unsigned long value_size;
 
 #ifdef SGX_ENCLAVE
-  // hash tables live inside enclave only
+	// hash tables live inside enclave only
 	unsigned long hash_table_size;
 	unsigned long hash_table_size_bytes;
 	unsigned long num_hash_tables;
 	uint64_t *hash_tables;
 	FILE *f;
 #else
-  // identifies the enclave associated with this KISSDB instance in the untrusted application
-  uint64_t eid;
+	// identifies the enclave associated with this KISSDB instance in the untrusted application
+	uint64_t eid;
 #endif
 } DLLEXPORT KISSDB;
 
@@ -121,7 +121,7 @@ extern DLLEXPORT int KISSDB_open(
 	unsigned long hash_table_size,
 	unsigned long key_size,
 	unsigned long value_size,
-  uint8_t encryption_key[128]);
+	uint8_t encryption_key[128]);
 
 /**
  * Close database
