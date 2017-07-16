@@ -45,7 +45,7 @@ int KISSDB_open(
 	unsigned long hash_table_size,
 	unsigned long key_size,
 	unsigned long value_size,
-  uint8_t *encryption_key)
+	uint8_t *encryption_key)
 {
 	uint64_t tmp;
 	uint8_t tmp2[4];
@@ -77,7 +77,7 @@ int KISSDB_open(
 	}
 	if (ftello(db->f) < KISSDB_HEADER_SIZE) {
 		/* write header if not already present */
-    /* header data is not sensitive -> unencrypted */
+		/* header data is not sensitive -> unencrypted */
 		if ((hash_table_size)&&(key_size)&&(value_size)) {
 			if (fseeko(db->f,0,SEEK_SET)) { fclose(db->f); return KISSDB_ERROR_IO; }
 			tmp2[0] = 'K'; tmp2[1] = 'd'; tmp2[2] = 'B'; tmp2[3] = KISSDB_VERSION;
@@ -132,7 +132,7 @@ int KISSDB_open(
 	}
 	db->num_hash_tables = 0;
 	db->hash_tables = (uint64_t *)0;
-  /* hash tables are stored unencrypted */
+	/* hash tables are stored unencrypted */
 	while (fread_insecure(httmp,db->hash_table_size_bytes,1,db->f) == 1) {
 		hash_tables_rea = realloc(db->hash_tables,db->hash_table_size_bytes * (db->num_hash_tables + 1));
 		if (!hash_tables_rea) {
@@ -260,7 +260,7 @@ int KISSDB_put(KISSDB *db,const void *key,const void *value)
 
 			if (fseeko(db->f,htoffset + (sizeof(uint64_t) * hash),SEEK_SET))
 				return KISSDB_ERROR_IO;
-      /* hash tables are stored unencrypted */
+			/* hash tables are stored unencrypted */
 			if (fwrite_insecure(&endoffset,sizeof(uint64_t),1,db->f) != 1)
 				return KISSDB_ERROR_IO;
 			cur_hash_table[hash] = endoffset;
@@ -289,7 +289,7 @@ put_no_match_next_hash_table:
 
 	cur_hash_table[hash] = endoffset + db->hash_table_size_bytes; /* where new entry will go */
 
-  /* hash tables are stored unencrypted */
+	/* hash tables are stored unencrypted */
 	if (fwrite_insecure(cur_hash_table,db->hash_table_size_bytes,1,db->f) != 1)
 		return KISSDB_ERROR_IO;
 
@@ -301,7 +301,7 @@ put_no_match_next_hash_table:
 	if (db->num_hash_tables) {
 		if (fseeko(db->f,lasthtoffset + (sizeof(uint64_t) * db->hash_table_size),SEEK_SET))
 			return KISSDB_ERROR_IO;
-    /* hash tables are stored unencrypted */
+		/* hash tables are stored unencrypted */
 		if (fwrite_insecure(&endoffset,sizeof(uint64_t),1,db->f) != 1)
 			return KISSDB_ERROR_IO;
 		db->hash_tables[((db->hash_table_size + 1) * (db->num_hash_tables - 1)) + db->hash_table_size] = endoffset;
